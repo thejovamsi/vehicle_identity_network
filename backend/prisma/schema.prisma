@@ -2,83 +2,74 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 // Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url= env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
-model user{
-  id String @id @default(cuid())
-  name String 
-  email String @unique
-  phoneNumberString ?
-  passwordHasH String 
-  createdAt DateTime @default(now())
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  phoneNumber   String?
+  passwordHash  String
+  createdAt     DateTime @default(now())
+
+  vehicles      Vehicle[]
+  notifications Notification[]
 }
 
-model vehicle {
-  id String @id @default(uuid())
+model Vehicle {
+  id            String   @id @default(uuid())
+  ownerId       String
 
-  ownerId String
+  make          String
+  model         String
+  year          Int?
+  color         String?
+  licensePlate  String?
+  qrCode        String   @unique
 
-  make String
+  createdAt     DateTime @default(now())
 
-  model String
-
-  year Int?
-
-  color String?
-
-  licensePlate String?
-
-  qrCode String @unique
-
-
-  createdAt DateTime @default(now())
-
-
-  owner User @relation(
-    fields: [ownerId],
-    references: [id]
-  )
-
- reports Report[]
+  owner          User     @relation(fields: [ownerId], references: [id])
+  reports        Report[]
 }
- model Report{
-  id String @id @default(uuid())
 
+model Report {
+  id            String   @id @default(uuid())
+  vehicleId     String
 
-  vehicleId String
+  issueType     String
+  message       String?
+  photoUrl      String?
 
+  latitude      Float?
+  longitude     Float?
 
-  issueType String
+  status        String   @default("OPEN")
 
-  message String?
+  createdAt     DateTime @default(now())
 
+  vehicle        Vehicle        @relation(fields: [vehicleId], references: [id])
+  notifications  Notification[]
+}
 
-  photoUrl String?
+model Notification {
+  id         String   @id @default(cuid())
 
+  userId     String
+  reportId   String
 
-  latitude Float?
+  type       String
+  isRead     Boolean  @default(false)
 
-  longitude Float?
+  createdAt  DateTime @default(now())
 
-
-  status String @default("OPEN")
-
-
-  createdAt DateTime @default(now())
-
-
-  vehicle Vehicle @relation(
-    fields: [vehicleId],
-    references: [id]
-  )
-
- }
+  user        User   @relation(fields: [userId], references: [id])
+  report      Report @relation(fields: [reportId], references: [id])
+}
