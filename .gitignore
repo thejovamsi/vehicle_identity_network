@@ -1,20 +1,35 @@
 # Dependencies
-node_modules/
 **/node_modules/
 
 # Environment files
-.env
-.env.*
+**/.env
+**/.env.*
+!.env.example
+
+# Next.js
+**/.next/
 
 # Build output
-dist/
-build/
+**/dist/
+**/build/
+**/coverage/
+
+# Prisma generated client (only if you use a custom output)
+**/src/generated/prisma/
 
 # Logs
 *.log
 
-# macOS
+# OS
 .DS_Store
+Thumbs.db
 
 # IDE
 .vscode/
+.idea/
+
+# AI / Editor specific
+**/.agents/
+**/.claude/
+**/.windsurf/
+**/skills-lock.json
