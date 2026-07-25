@@ -20,6 +20,7 @@ export const registerUser = async (userData: RegisterUserData) => {
         select:{
             id:true,
             name:true,
+            email:true,
             phoneNumber:true,
             createdAt:true
         }
