@@ -4,8 +4,21 @@ Digital Identity Layer for Every Vehicle.
 
 ## Structure
 
-frontend - Next.js application
+## Tech Stack
 
-backend - Express API
+### Frontend
+- Next.js
+- TypeScript
+- Tailwind CSS
 
-docs - Product documentation
+### Backend
+- Node.js
+- Express.js
+- TypeScript
+- Prisma ORM
+- PostgreSQL
+
+### Development Tools
+- Git
+- Docker
+- Prisma
