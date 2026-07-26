@@ -8,11 +8,17 @@ type RegisterUserData = {
     phoneNumber?: string;
     createdAt?: Date;
 };
+type LoginUserData = {
+    email: string;
+    password: string;
+};
 
 
 
 export const registerUser = async (userData: RegisterUserData) => {
     const { name, email, password, phoneNumber } = userData;
+
+    // Check if user with the same email already exists
     const existingUser = await prisma.user.findUnique({
         where: {
             email
@@ -21,8 +27,7 @@ export const registerUser = async (userData: RegisterUserData) => {
     if (existingUser) {
         throw new Error("User with this email already exists");
     }
-
-    const passwordHash = await bcrypt.hash(password,10);
+    const passwordHash = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
         data: {
             name,
@@ -38,5 +43,30 @@ export const registerUser = async (userData: RegisterUserData) => {
             passwordHash:true
         }
     });
+    return user;
+};
+export const loginUser = async (userData: LoginUserData) => {
+    const { email, password } = userData;
+
+    console.log("email", email);
+    const user = await prisma.user.findUnique({
+        where: {
+            email
+        }
+    });
+    console.log("user", user);
+     if (!user) {
+        throw new Error("Invalid email or password");
+    }
+
+    // Check if password is valid
+    const isPasswordValid = await bcrypt.compare(
+        password, 
+        user.passwordHash
+    );
+    if (!isPasswordValid) {
+        throw new Error("Invalid email or password");
+    }
+    console.log("user logged in ", user)
     return user;
 };
