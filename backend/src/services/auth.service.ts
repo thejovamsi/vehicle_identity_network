@@ -89,18 +89,26 @@ export const loginUser = async (userData: LoginUserData) => {
     return { user, token };
 };
 
-export const createVehicle = async (
+export const createVehicleService = async (
     vehicleData: CreateVehicleData,
     userId: string
 ) => {
     const { make, model, year, color, licensePlate } = vehicleData;
 
+    const existingVehicle = await prisma.vehicle.findUnique({
+        where: {
+            licensePlate
+        }
+    });
+    if (existingVehicle) {
+        throw new Error("Vehicle with this license plate already exists");
+    } 
     const vehicle = await prisma.vehicle.create({
         data: {
             make,
             model,
-            year,
-            color,
+            year: year !== undefined ? year : null,
+            color: color !== undefined ? color : null,
             licensePlate,
             ownerId: userId
         },

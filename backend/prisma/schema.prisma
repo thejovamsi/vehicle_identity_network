@@ -31,7 +31,7 @@ model Vehicle {
   model         String
   year          Int?
   color         String?
-  licensePlate  String?
+  licensePlate  String   @unique
   qrCode        String?   @unique
 
   createdAt     DateTime @default(now())
