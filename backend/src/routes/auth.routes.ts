@@ -1,7 +1,9 @@
 import { Router } from "express";
-import { register,login,createVehicle } from "../controllers/auth.controller.js";
+import { register,login } from "../controllers/auth.controller.js";
 import { validate } from "../middleware/validate.js";
-import { loginSchema, registerSchema, createVehicleSchema } from "../validations/auth.validation.js";
+import { loginSchema, registerSchema} from "../validations/auth.validation.js";
+import { createVehicle } from "../controllers/vehicle.controller.js";
+import { createVehicleSchema } from "../validations/vehicle.validation.js";
 import { authenticate } from "../middleware/jwtAuth.js";
 import { create } from "node:domain";
 
