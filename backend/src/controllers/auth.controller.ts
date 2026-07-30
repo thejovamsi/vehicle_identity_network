@@ -35,3 +35,7 @@ export const register = async (req: Request, res: Response) => {
         }
     }   
 };
+export const createVehicle = async(req:Request, res:Response) =>{
+    const user = (req as any).user;
+    console.log("user", user.userId);
+} 

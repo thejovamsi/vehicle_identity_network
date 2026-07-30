@@ -1,5 +1,6 @@
 import prisma from "../config/prisma.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 type RegisterUserData = {
     name: string;
@@ -12,6 +13,13 @@ type LoginUserData = {
     email: string;
     password: string;
 };
+type CreateVehicleData = {
+    make:string;
+    model:string;
+    year?:number;
+    color?:string;
+    licensePlate:string;
+}
 
 
 
@@ -67,6 +75,46 @@ export const loginUser = async (userData: LoginUserData) => {
     if (!isPasswordValid) {
         throw new Error("Invalid email or password");
     }
-    console.log("user logged in ", user)
-    return user;
+    
+    const payload = {
+        userId: user.id,
+        email: user.email
+    };
+    const token = jwt.sign(
+        payload,
+        process.env.JWT_SECRET!,
+        { expiresIn: "1h" }
+    );
+   console.log(`User ${user.email} logged in`); 
+    return { user, token };
+};
+
+export const createVehicle = async (
+    vehicleData: CreateVehicleData,
+    userId: string
+) => {
+    const { make, model, year, color, licensePlate } = vehicleData;
+
+    const vehicle = await prisma.vehicle.create({
+        data: {
+            make,
+            model,
+            year,
+            color,
+            licensePlate,
+            ownerId: userId
+        },
+        select: {
+            id: true,
+            ownerId: true,
+            make: true,
+            model: true,
+            year: true,
+            color: true,
+            licensePlate: true,
+            createdAt: true
+        }
+    });
+
+    return vehicle;
 };
