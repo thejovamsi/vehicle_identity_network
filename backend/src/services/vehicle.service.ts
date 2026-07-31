@@ -9,7 +9,6 @@ type CreateVehicleData = {
     licensePlate:string;
 }
 
-
 export const createVehicleService = async (
     vehicleData: CreateVehicleData,
     userId: string
@@ -47,3 +46,41 @@ export const createVehicleService = async (
 
     return vehicle;
 };
+
+export const getVehiclesByUserId = async (userId: string) => {
+    const vehicles = await prisma.vehicle.findMany({
+        where: {
+            ownerId: userId
+        },
+        select: {
+            id: true,
+            ownerId: true,
+            make: true,
+            model: true,
+            year: true,
+            color: true,
+            licensePlate: true,
+            createdAt: true
+        }
+    });
+    return vehicles;
+}
+
+//For finding a single vehcile
+export const getVehicleByIdService = async ( vehicleId: string,userId: string) => 
+    {
+    const vehicle = await prisma.vehicle.findFirst({
+        where: {
+            id: vehicleId,
+            ownerId: userId
+        }
+    });
+
+    if (!vehicle) {
+        throw new Error("Vehicle not found");
+    }
+
+    return vehicle;
+};
+
+// to update the vehicle

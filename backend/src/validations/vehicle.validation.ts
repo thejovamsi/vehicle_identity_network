@@ -11,3 +11,6 @@ export const createVehicleSchema = z.object({
     color:z.string().optional(),
     licensePlate:z.string()
 })
+export const VehicleIdSchema = z.object({
+    id:z.uuid()
+})
