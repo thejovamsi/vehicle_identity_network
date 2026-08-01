@@ -14,3 +14,6 @@ export const createVehicleSchema = z.object({
 export const VehicleIdSchema = z.object({
     id:z.uuid()
 })
+
+//  taking same schema from createVehicleSchema and making all fields optional for update using zod's partial method
+export const updateVehicleSchema = createVehicleSchema.partial()

@@ -8,6 +8,13 @@ type CreateVehicleData = {
     color?:string;
     licensePlate:string;
 }
+type UpdateVehicleData = {
+    make?:string;
+    model?:string;
+    year?:number;
+    color?:string;
+    licensePlate?:string;
+}
 
 export const createVehicleService = async (
     vehicleData: CreateVehicleData,
@@ -84,3 +91,54 @@ export const getVehicleByIdService = async ( vehicleId: string,userId: string) =
 };
 
 // to update the vehicle
+export const updateVehicleByIdService = async( vehicleId:string, userId:string, updateData:UpdateVehicleData )=>{
+    const vehicle = await prisma.vehicle.findFirst({
+        where:{
+            id:vehicleId,
+            ownerId:userId
+        }
+    })
+    if(!vehicle){
+        throw new Error("Vehicle not found");
+    }
+    else {
+        const updatedVehicle = await prisma.vehicle.update({
+            where:{
+                id:vehicleId
+            },
+            data:updateData,
+            select:{
+                id:true,
+                ownerId:true,
+                make:true,
+                model:true,
+                year:true,
+                color:true,
+                licensePlate:true,
+                createdAt:true
+            }
+        })
+        return updatedVehicle; 
+    }
+}
+
+//Delete a vehicle by id 
+export const deleteVehicleByIdService = async (vehicleId:string, userId:string)=>{
+    const vehicle = await prisma.vehicle.findFirst({
+        where:{
+            id:vehicleId,
+            ownerId:userId
+        }
+    })
+    if(!vehicle){
+        throw new Error("Vehicle not found");
+    }
+    else{
+        const deleteVehicle = await prisma.vehicle.delete({
+            where:{
+                id:vehicleId
+            }
+        })
+        return deleteVehicle;
+    }
+}
