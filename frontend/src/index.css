@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+.glass {
+  background: rgba(255, 255, 255, 0.68);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  box-shadow:
+    0 8px 40px rgba(11, 19, 43, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  border-radius: 24px;
+}
+.glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+
+  border: 1px solid rgba(255,255,255,0.8);
+
+  border-radius: 28px;
+
+  box-shadow:
+      0 20px 60px rgba(17,24,39,.08),
+      inset 0 1px 0 rgba(255,255,255,.9);
+
+  padding: 2rem;
+
+  transition: all .35s ease;
+}
+
+.glass-card:hover{
+  transform: translateY(-6px);
+
+  box-shadow:
+      0 28px 80px rgba(17,24,39,.12),
+      inset 0 1px 0 rgba(255,255,255,.95);
+}
+.glass-blue {
+  background: rgba(16, 107, 197, 0.18);
+}
+
+@keyframes float-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes float-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(16px); }
+}
+
+@keyframes float-left {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-14px); }
+}
+
+@keyframes float-right {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(14px); }
+}
+
+@keyframes float-drift {
+  0%, 100% { transform: translate(0, 0); }
+  33% { transform: translate(10px, -14px); }
+  66% { transform: translate(-8px, 10px); }
+}
+
+.float-up {
+  animation: float-up 7s ease-in-out infinite;
+}
+
+.float-down {
+  animation: float-down 9s ease-in-out infinite;
+}
+
+.float-left {
+  animation: float-left 8s ease-in-out infinite;
+}
+
+.float-right {
+  animation: float-right 6.5s ease-in-out infinite;
+}
+
+.float-drift {
+  animation: float-drift 11s ease-in-out infinite;
+}
