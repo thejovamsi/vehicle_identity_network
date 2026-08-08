@@ -1,33 +1,41 @@
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import NavButton from "./NavButton";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-8 left-0 right-0 z-50">
+    <header className="fixed top-5 left-0 right-0 z-50">
       <div className="mx-auto flex w-[90%] max-w-7xl items-center justify-between">
 
         <Logo />
 
-        <nav className="glass hidden md:flex items-center gap-10 px-10 py-3">
+        <nav className="glass hidden md:flex items-center gap-8 px-10 py-3">
 
-          <NavButton to="/">Product</NavButton>
+          <NavButton sectionId="product">Product</NavButton>
 
-          <NavButton to="/how-it-works">
+          <NavButton sectionId="how-it-works">
             How It Works
           </NavButton>
 
-          <NavButton to="/pricing">
+          <NavButton sectionId="pricing">
             Pricing
           </NavButton>
 
-          <NavButton to="/about">
+           <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive
+                ? "font-semibold text-slate-900"
+                : "text-slate-500 transition hover:text-slate-900"
+            }
+          >
             About
-          </NavButton>
+          </NavLink>
 
         </nav>
 
-        <div className="glass flex items-center gap-2 rounded-2xl border border-white/70 bg-white/70 px-4 py-2 shadow-lg backdrop-blur-xl">
+        <div className="glass px-4 py-3">
 
           <Link
             to="/login"
@@ -38,7 +46,7 @@ export default function Navbar() {
 
           <Link
             to="/register"
-            className="rounded-xl bg-blue-500 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-600 hover:shadow-lg"
+            className="rounded-xl bg-blue-500 text-white px-6 py-2 font-medium transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-600 hover:shadow-lg"
           >
             Get Started
           </Link>

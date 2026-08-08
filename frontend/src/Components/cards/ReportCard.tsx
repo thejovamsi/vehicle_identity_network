@@ -1,7 +1,7 @@
-export default function NotificationCard() {
-  return (
-    <div className="absolute" style={{ left: '2%', bottom: '6%', zIndex: 20, transform: 'rotate(4deg)' }}>
-        <div style={{ animation: 'float-drift 9s ease-in-out 0.6s infinite' }}>
+export default function ReportCard(){
+    return (
+        <div className="absolute" style={{right: '3%', bottom: '3%', zIndex: 20, width:240, transform: 'rotate(4deg)'}}>
+            <div style={{ animation: 'float-up 9s ease-in-out 0.6s infinite' }}>
           <div className="glass p-4" style={{ width: 240 }}>
             <div className="flex gap-3">
               <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(93,174,255,0.12)' }}>
@@ -22,6 +22,6 @@ export default function NotificationCard() {
             </div>
           </div>
         </div>
-      </div>
-  );
+        </div>
+    )
 }

@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
 
-type Props = {
-  to: string;
+type NavButtonProps = {
+  sectionId: string;
   children: React.ReactNode;
 };
 
-export default function NavButton({ to, children }: Props) {
+export default function NavButton({
+  sectionId,
+  children,
+}: NavButtonProps) {
   return (
-    <Link
-      to={to}
-      className="transition-all duration-300 hover:text-blue-500"
+    <a
+      href={`#${sectionId}`}
+      className="text-slate-500 transition hover:text-slate-900"
     >
       {children}
-    </Link>
+    </a>
   );
 }

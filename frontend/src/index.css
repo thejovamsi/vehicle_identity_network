@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+body {
+  position: relative;
+  min-height: 200vh; /* Ensures body has at least 2 pages */
+  margin: 0;
+}
+
 .glass {
   background: rgba(255, 255, 255, 0.68);
   backdrop-filter: blur(24px) saturate(180%);
@@ -86,4 +92,144 @@
 
 .float-drift {
   animation: float-drift 11s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* SKY ANIMATION */
+
+/* =========================
+   Sky background
+========================= */
+.sky {
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  inset: 0;
+  height:200vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      130% 95% at 82% -18%,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0) 40%
+    ),
+    radial-gradient(
+      120% 100vh at 10% 0%,
+      rgba(83, 155, 207, 0.75) 0%,
+      rgba(196, 230, 255, 0) 100%
+    ),
+    /* Sky blue transitions into pure white at 150vh height */
+   linear-gradient(
+      180deg,
+      #3e97e2 0%,
+      #5eafea 50vh,
+      #86c4ef 100vh,
+      #ffffff 150vh,
+      #ffffff 100%
+    );
+}
+
+
+/* Marquee  */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 35s linear infinite;
+}
+
+/* Footer sky background */
+.footer-sky {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.footer-cloud {
+  position: absolute;
+  left: 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  will-change: transform;
+  filter: drop-shadow(0 12px 18px rgba(90, 140, 190, 0.18));
+}
+
+.footer-cloud-a {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 340 170'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='34%25' r='72%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='62%25' stop-color='%23fbfdff'/%3E%3Cstop offset='100%25' stop-color='%23e6f0fb'/%3E%3C/radialGradient%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='9'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23b)' fill='url(%23g)'%3E%3Cellipse cx='170' cy='118' rx='128' ry='30'/%3E%3Ccircle cx='100' cy='94' r='34'/%3E%3Ccircle cx='156' cy='70' r='50'/%3E%3Ccircle cx='214' cy='86' r='40'/%3E%3Ccircle cx='262' cy='104' r='28'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.footer-cloud-b {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 380 140'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='34%25' r='72%25'%3E%3Cstop offset='0%25' stop-color='%23ffffff'/%3E%3Cstop offset='62%25' stop-color='%23fbfdff'/%3E%3Cstop offset='100%25' stop-color='%23e6f0fb'/%3E%3C/radialGradient%3E%3Cfilter id='b'%3E%3CfeGaussianBlur stdDeviation='10'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23b)' fill='url(%23g)'%3E%3Cellipse cx='190' cy='98' rx='160' ry='26'/%3E%3Ccircle cx='120' cy='80' r='30'/%3E%3Ccircle cx='186' cy='62' r='44'/%3E%3Ccircle cx='246' cy='78' r='34'/%3E%3Ccircle cx='292' cy='90' r='24'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.footer-cloud-1 {
+  top: 10%;
+  width: 440px;
+  height: 210px;
+  opacity: 0.85;
+  animation: footer-drift 70s linear infinite;
+  animation-delay: -8s;
+}
+
+.footer-cloud-2 {
+  top: 28%;
+  width: 300px;
+  height: 110px;
+  opacity: 0.5;
+  animation: footer-drift 96s linear infinite;
+  animation-delay: -52s;
+}
+
+.footer-cloud-3 {
+  top: 44%;
+  width: 400px;
+  height: 190px;
+  opacity: 0.7;
+  animation: footer-drift 60s linear infinite;
+  animation-delay: -30s;
+}
+
+.footer-cloud-4 {
+  top: 62%;
+  width: 340px;
+  height: 150px;
+  opacity: 0.45;
+  animation: footer-drift 82s linear infinite;
+  animation-delay: -18s;
+}
+
+.footer-cloud-5 {
+  top: 78%;
+  width: 460px;
+  height: 200px;
+  opacity: 0.55;
+  animation: footer-drift 105s linear infinite;
+  animation-delay: -65s;
+}
+
+@keyframes footer-drift {
+  0% {
+    transform: translateX(-42vw);
+  }
+
+  100% {
+    transform: translateX(132vw);
+  }
 }

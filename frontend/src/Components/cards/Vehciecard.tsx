@@ -1,10 +1,10 @@
 export default function VehicleCard() {
   return (
-    <div className="bg-blue-100 relative mx-auto" style={{ width: '100%', maxWidth: 860, height: 460 }}>
+    <div>
 
       {/* ── Vehicle Profile Card — center ── */}
-      <div className="absolute" style={{ left: '50%', top: '50%', marginLeft: -155, marginTop: -115, zIndex: 10 }}>
-        <div style={{ animation: 'float 7s ease-in-out infinite' }}>
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div style={{ animation: 'float-up 7s ease-in-out infinite' }}>
           <div className="glass p-5" style={{ width: 310 }}>
             <div className="flex items-center justify-between mb-3">
               <span className="text-xs font-semibold tracking-wide uppercase" style={{ color: '#9CA3AF' }}>Vehicle Profile</span>
