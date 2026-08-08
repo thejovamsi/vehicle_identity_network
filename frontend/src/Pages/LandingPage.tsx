@@ -4,6 +4,7 @@ import FeatureCards from "../Components/FeautureCards";
 import Product from "../Components/Product"
 import AnimatedSky from "../Components/ui/AnimatedSky";
 import Footer from "../Components/Footer";
+import PricingPage from "../Pages/PricingPage"
 
 
 
@@ -17,7 +18,9 @@ export default function LandingPage() {
       <Hero />
       <FeatureCards />
       <Product />
+      <PricingPage />
       <Footer/>
+
       </main>
       </div>
       </div>

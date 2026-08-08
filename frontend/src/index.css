@@ -48,6 +48,43 @@ body {
   background: rgba(16, 107, 197, 0.18);
 }
 
+
+/* glasscard yellow */
+.glass-card-yellow {
+  background: rgba(246, 244, 102, 0.624);
+  backdrop-filter: blur(28px) saturate(0%);
+  -webkit-backdrop-filter: blur(28px) saturate(0%);
+  border: 1px solid rgba(255, 196, 61, 0.55);
+  border-radius: 28px;
+
+  box-shadow:
+    0 20px 60px rgba(255, 196, 61, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+
+  padding: 2rem;
+
+  transition: all 0.35s ease;
+}
+
+.glass-card-yellow:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 28px 80px rgba(255, 196, 61, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.glass-card-yellow:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 28px 80px rgba(255, 196, 61, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+
+
+
 @keyframes float-up {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }

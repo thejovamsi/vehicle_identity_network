@@ -86,7 +86,7 @@ export default function Hero() {
           >
             <Link
               to="/register"
-              className="rounded-2xl bg-orange-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-orange-600 hover:shadow-xl"
+              className="rounded-2xl bg-orange-400 px-8 py-4 font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-orange-600 hover:shadow-xl"
             >
               Get Started
             </Link>
